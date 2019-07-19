@@ -1,5 +1,6 @@
 package com.nmq.observer;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @modifyDate
  */
 @Component
+@Slf4j
 public class EmailListener implements ApplicationListener<UserLoginEvent> {
     /**
      *  @Async 异步执行任务
@@ -25,6 +27,6 @@ public class EmailListener implements ApplicationListener<UserLoginEvent> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName()  + "用户登录成功，向邮箱地址："+ user.getEmail() +"发送邮件成功");
+        log.info(Thread.currentThread().getName()  + "用户登录成功，向邮箱地址："+ user.getEmail() +"发送邮件成功");
     }
 }
